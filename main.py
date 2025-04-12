@@ -203,6 +203,17 @@ def favicon():
 
 @app.route("/admin")
 def admin():
+    
+    key = request.args.get("key")
+    if key != "magunGood":
+        return """
+        <h2>🔐 Вход в админ-панель</h2>
+        <form method="get">
+            <input type="password" name="key" placeholder="Введите пароль">
+            <button type="submit">Войти</button>
+        </form>
+        """
+
     clear_update_flag()
     db = TinyDB("responses.json")
     responses = db.all()
