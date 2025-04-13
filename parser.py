@@ -25,7 +25,7 @@ async def run_parser():
 
         print("[PARSER] Переход на страницу анкеты...")
         await page.goto("https://mecom-int.kz/page64501793.html")
-        await asyncio.sleep(1)
+        await asyncio.sleep(2)
 
         print("[PARSER] Заполнение ФИО...")
         await page.fill("input[name='ФИО Кандидата']", data['fio'])
@@ -82,10 +82,11 @@ async def run_parser():
         await page.wait_for_selector("label.t-checkbox__control:has(input[name='Согласие'])", state="visible", timeout=10000)
         await page.click("label.t-checkbox__control:has(input[name='Согласие'])")
 
-        print("[PARSER] Финальное ожидание...")
-        await asyncio.sleep(10)
+        print("[PARSER] Отправка формы... нажимаем кнопку 'Отправить / Жіберу'")
+        await page.wait_for_selector("button.t-submit", timeout=10000)
+        await page.click("button.t-submit")
 
-        print("[PARSER] ✅ Все поля успешно заполнены и форма продолжена.")
+        print("[PARSER] ✅ Все поля успешно заполнены и форма отправлена.")
         print("[PARSER] ✅ Запуск postsubmit...")
         run_postsubmit()
         await browser.close()
