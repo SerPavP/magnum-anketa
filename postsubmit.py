@@ -1,9 +1,10 @@
 import json
+import os
 from tinydb import TinyDB
 from datetime import datetime
-import os
 
 STATUS_FILE = "status.json"
+
 
 def run_postsubmit():
     print("[POSTSUBMIT] Загружаем анкету пользователя...")
@@ -21,8 +22,18 @@ def run_postsubmit():
         json.dump({"new_update": True}, f)
     print("[POSTSUBMIT] 🚨 Установлен флаг нового обновления для администратора.")
 
+
 def clear_update_flag():
     if os.path.exists(STATUS_FILE):
         with open(STATUS_FILE, "w", encoding="utf-8") as f:
             json.dump({"new_update": False}, f)
         print("[POSTSUBMIT] ✅ Флаг обновления сброшен.")
+
+
+def clear_database():
+    print("[POSTSUBMIT] ⚠️ Очистка всех данных...")
+    db = TinyDB("responses.json")
+    db.truncate()
+    with open(STATUS_FILE, "w", encoding="utf-8") as f:
+        json.dump({"new_update": False}, f)
+    print("[POSTSUBMIT] ✅ База и флаг обновления очищены.")

@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Анкеты</title>
+        <link rel='icon' href='/favicon.ico'>
+        <script>
+            function confirmClear() {
+                if (confirm('Вы уверены, что хотите удалить все анкеты?')) {
+                    window.location.href = '/admin/clear';
+                }
+            }
+            setInterval(() => {
+                location.reload();
+            }, 10000);
+        </script>
+    </head>
+    <body style="font-family: sans-serif; padding: 20px;">
+        <h1>📥 Новые анкеты</h1>
+        <button onclick="confirmClear()" style="background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;margin-bottom:20px;">
+            🗑 Очистить все анкеты
+        </button>
+        {% for r in responses[::-1] %}
+            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+                <strong>{{ r.fio }}</strong><br>
+                📱 Телефон: {{ r.phone }}<br>
+                🆔 ИИН: {{ r.iin }}<br>
+                🏢 Филиал: {{ r.branch }}<br>
+                🕒 Время: {{ r.timestamp }}
+            </div>
+        {% endfor %}
+    </body>
+    </html>

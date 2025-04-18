@@ -1,0 +1,35 @@
+# Пользовательские данные
+user_data.json
+responses.json
+status.json
+
+# Логи
+error.log
+
+# Python байт-код и кэш
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Виртуальные окружения
+venv/
+env/
+.venv/
+
+# Секреты и конфигурации
+.env
+secrets.json
+
+# Служебные файлы ОС и редакторов
+.DS_Store
+*.bak
+*.swp
+*.tmp
+
+# Настройки IDE
+.idea/
+.vscode/
+
+# Зависимости JavaScript (на будущее)
+node_modules/
