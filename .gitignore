@@ -7,7 +7,7 @@ status.json
 error.log
 
 # Python байт-код и кэш
-__pycache__/
+__pycache__
 *.pyc
 *.pyo
 *.pyd
